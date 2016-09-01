@@ -37,8 +37,11 @@ int parse_xml_str(char *xml)
 {
     pUTIL_XML_REQ util_xml_req = NULL;
 	pUTIL_XML_TAG root_tag = NULL;
+	pUTIL_XML_TAG loop_tag = NULL;
+	
     char name[100];
     char id[10];
+	
    	util_xml_req = calloc(1, sizeof(UTIL_XML_REQ));
 	util_xml_init(util_xml_req);
 	util_xml_req->query_str = xml;
@@ -61,6 +64,15 @@ int parse_xml_str(char *xml)
     printf("ID:  %d\n",atoi(id));
 	int role = atoi(id)?DATA1:DATA2;
 	printf("DATA:%d\n",role);
+	
+	loop_tag = root_tag->first_child;
+	while(loop_tag)
+	{
+		if(strcmp(unit_tag->name, "loop1") == 0)
+		{
+			printf("parse successfully\n");
+		}
+	}
     return 0;
 }
 
